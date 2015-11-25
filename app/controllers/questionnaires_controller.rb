@@ -17,9 +17,9 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   def new
     @questionnaire = Questionnaire.new
-    3.times do
+    params[:num_questions].to_i.times do
       question = @questionnaire.questions.build
-      4.times { question.answers.build }
+      params[:num_answers].to_i.times { question.answers.build }
     end
   end
 
@@ -76,7 +76,7 @@ class QuestionnairesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionnaire_params
       params.require(:questionnaire).permit(:name,
-          :questions_attributes => [:content,
-              :answers_attributes => [:content]])
+          questions_attributes: [:content,
+              answers_attributes: [:content]])
     end
 end
