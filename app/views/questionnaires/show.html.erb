@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @questionnaire.name %></h1><br>
+
+<% @questions.each do |q| %>
+<h2><%= q.content %></h2>
+  <% q.answers.each do |a| %>
+  <p><%= a.content %></p>
+  <% end %>
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @questionnaire.name %>
